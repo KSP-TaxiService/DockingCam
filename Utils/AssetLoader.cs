@@ -24,7 +24,7 @@ namespace OLDD_camera.Utils
 
         IEnumerator Start()
         {
-            string url = "file://" + KSPUtil.ApplicationRootPath + "GameData/OLDD/DockingCam/Resources/DockingCam.ksp"; 
+            string url = "file://" + KSPUtil.ApplicationRootPath + "GameData/DockingCam/Resources/DockingCam.ksp"; 
             while (!Caching.ready)
                 yield return null;
             Debug.Log("OLDD_AssetLoader: Start caching ready");

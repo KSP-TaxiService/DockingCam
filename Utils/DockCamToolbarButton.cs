@@ -3,7 +3,6 @@ using KSP.IO;
 using KSP.UI.Screens;
 using OLDD_camera.Camera;
 using OLDD_camera.Utils;
-using ToolbarControl_NS;
 using UnityEngine;
 
 namespace OLDD_camera
@@ -26,6 +25,8 @@ namespace OLDD_camera
         private static bool _dist9999;
         private bool mainWindowVisible;
         private readonly int _modulePartCameraId = "PartCameraModule".GetHashCode();
+
+        protected ApplicationLauncherButton launcherButton = null;
 
         public static bool FCS;
 
@@ -50,9 +51,10 @@ namespace OLDD_camera
             GameEvents.onVesselChange.Remove(NewVesselCreated);
             GameEvents.onVesselLoaded.Remove(NewVesselCreated);
             GameEvents.onGUIApplicationLauncherReady.Remove(OnAppLauncherReady);
-            toolbarControl.OnDestroy();
-            Destroy(toolbarControl);
-            toolbarControl = null;
+            if (launcherButton != null)
+            {
+                ApplicationLauncher.Instance.RemoveModApplication(launcherButton);
+            }
         }
 
         public void Update()
@@ -68,8 +70,6 @@ namespace OLDD_camera
 
         private void OnGUI()
         {
-            if (toolbarControl != null)
-                toolbarControl.UseBlizzy(HighLogic.CurrentGame.Parameters.CustomParams<CameraGameSettings>().useBlizzy);
             if (mainWindowVisible)
                 OnWindowOLDD();
         }
@@ -84,17 +84,21 @@ namespace OLDD_camera
             mainWindowVisible = false;
         }
 
-        private ToolbarControl toolbarControl;
         private void OnAppLauncherReady()
         {
+            /*
             if (toolbarControl != null) return;
             toolbarControl = gameObject.AddComponent<ToolbarControl>();
             toolbarControl.AddToAllToolbars(ShowMainWindow, HideMainWindow,
                 ApplicationLauncher.AppScenes.FLIGHT, "OLDD_camera", "DockingCameraButton",
-                "OLDD/DockingCam/Icons/DockingCamIcon32",
-                "OLDD/DockingCam/Icons/DockingCamIcon",
+                "DockingCam/Icons/DockingCamIcon32",
+                "DockingCam/Icons/DockingCamIcon",
                 "Docking Camera");
-            toolbarControl.UseBlizzy(HighLogic.CurrentGame.Parameters.CustomParams<CameraGameSettings>().useBlizzy);
+            */
+
+            this.launcherButton = ApplicationLauncher.Instance.AddModApplication(
+                ShowMainWindow, HideMainWindow, null, null, null, null,
+                ApplicationLauncher.AppScenes.FLIGHT, Util.LoadTexture("Icons/DockingCamIcon32"));
         }
 
         private static void OnWindowOLDD()

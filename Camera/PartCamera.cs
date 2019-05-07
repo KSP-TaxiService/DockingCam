@@ -266,7 +266,7 @@ namespace OLDD_camera.Camera
                             ThisPart.GetConnectedResourceTotals(id, out amount, out maxAmount);
                             if (amount > _resourceUsage)
                             {
-                                ThisPart.RequestResource(id, _resourceUsage);
+                                ThisPart.RequestResource(id, (double)_resourceUsage);
                                 var hit = PartGameObject.GetChild($"{_bulletName}{Hits:000}");
                                 Object.Destroy(hit);
                                 Hits--;
@@ -505,9 +505,11 @@ namespace OLDD_camera.Camera
             if (!IsInsight(out endPoint)) return;
             _scanningRay = new GameObject("scanningRay").AddComponent<LineRenderer>();
             _scanningRay.material = new Material(Shader.Find("Particles/Additive"));
-            _scanningRay.SetColors(Color.red, Color.red);
-            _scanningRay.SetVertexCount(2);
-            _scanningRay.SetWidth(0.02f, 0.02f);
+            _scanningRay.startColor = Color.red;
+            _scanningRay.endColor = Color.red;
+            _scanningRay.positionCount = 2;
+            _scanningRay.startWidth = 0.02f;
+            _scanningRay.endWidth = 0.02f;
             _scanningRay.useWorldSpace = true;
             _scanningRay.SetPosition(0, ThisPart.transform.position);
             _scanningRay.SetPosition(1, endPoint);
@@ -521,9 +523,11 @@ namespace OLDD_camera.Camera
             _visibilityRay = new GameObject("visibilityRay").AddComponent<LineRenderer>();
             var color = Color.white;
             _visibilityRay.material = new Material(Shader.Find("Particles/Additive"));
-            _visibilityRay.SetColors(color, color);
-            _visibilityRay.SetVertexCount(2);
-            _visibilityRay.SetWidth(0.02f, 0.02f);
+            _visibilityRay.startColor = color;
+            _visibilityRay.endColor = color;
+            _visibilityRay.positionCount = 2;
+            _visibilityRay.startWidth = 0.02f;
+            _visibilityRay.endWidth = 0.02f;
             _visibilityRay.useWorldSpace = true;
             _visibilityRay.SetPosition(0, _camObject.transform.position);
             _visibilityRay.SetPosition(1, TargetHelper.Target.GetTransform().position);

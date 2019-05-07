@@ -87,7 +87,7 @@ namespace OLDD_camera.Camera
 
         private void FlightUIModeChanged(FlightUIMode mode)
         {
-            IsOrbital = mode == FlightUIMode.ORBITAL;
+            IsOrbital = ThisPart.vessel.situation == Vessel.Situations.ORBITING;
         }
 
         protected virtual void InitWindow()
