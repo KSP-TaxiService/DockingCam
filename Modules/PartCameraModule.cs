@@ -249,7 +249,7 @@ namespace OLDD_camera.Modules
             double electricChargeAmount = 0;
             int electricityId = PartResourceLibrary.Instance.GetDefinition("ElectricCharge").id;
 
-            if (HighLogic.LoadedSceneIsEditor)
+            if (HighLogic.LoadedSceneIsEditor && EditorLogic.fetch != null)
             {
                 var parts = EditorLogic.fetch.ship.parts;
                 foreach (var p in parts)

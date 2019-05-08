@@ -28,7 +28,7 @@ namespace OLDD_camera.Camera
         internal bool TargetCrossOLDD;
         internal bool TargetCrossDPAI;
         private bool _cameraData = true;
-        private bool _rotatorState = true;
+        private bool _rotatorState = false;
         private readonly float _maxSpeed = 2;
 
         private Color _targetCrossColorOLDD = new Color(0, 0, 0.9f, 1);
@@ -307,8 +307,8 @@ namespace OLDD_camera.Camera
         {
             if (IsActive) return;
             SetFreeId();
-            WindowPosition.x = WindowPosition.width * (_id - 1);
-            WindowPosition.y = 400;
+            WindowPosition.x = Screen.width / 6 - WindowPosition.width / 2 + 10 * (_id - 1);
+            WindowPosition.y = Screen.height/2- WindowPosition.height/2;
             base.Activate();
         }
 

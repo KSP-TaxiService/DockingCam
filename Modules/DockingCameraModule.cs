@@ -30,7 +30,11 @@ namespace OLDD_camera.Modules
         {
             if (state == StartState.Editor || _camera != null) return;
             if (_camera == null)
+            {
+                _crossDPAI = true;
+                _crossOLDD = true;
                 _camera = new DockingCamera(part, noise, _crossDPAI, _crossOLDD, _windowSize);
+            }
         }
 
         public override void OnUpdate()

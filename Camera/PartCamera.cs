@@ -151,8 +151,8 @@ namespace OLDD_camera.Camera
         {
             base.Activate();
             SetFreeId();
-            WindowPosition.x = WindowPosition.width * (_id - 1);
-            WindowPosition.y = 64;
+            WindowPosition.x = Screen.width / 6 - WindowPosition.width / 2 + 10 * (_id - 1);
+            WindowPosition.y = Screen.height / 2 - WindowPosition.height / 2;
         }
 
         public override void Deactivate()

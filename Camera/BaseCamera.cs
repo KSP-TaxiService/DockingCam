@@ -48,9 +48,9 @@ namespace OLDD_camera.Camera
         internal int CalculatedZoom;
         internal bool ZoomMultiplier = false; 
         
-        private bool _isTargetPoint;
+        private bool _isTargetPoint = true;
 
-        protected int WindowSizeCoef = 2;
+        protected int WindowSizeCoef = 4;
         protected int WindowId = UnityEngine.Random.Range(1000, 10000);
 
         internal bool IsActive;
@@ -87,7 +87,14 @@ namespace OLDD_camera.Camera
 
         private void FlightUIModeChanged(FlightUIMode mode)
         {
-            IsOrbital = ThisPart.vessel.situation == Vessel.Situations.ORBITING;
+            if (ThisPart.vessel != null)
+            {
+                IsOrbital = ThisPart.vessel.situation == Vessel.Situations.ORBITING;
+            }
+            else
+            {
+                IsOrbital = false;
+            }
         }
 
         protected virtual void InitWindow()
@@ -306,7 +313,10 @@ namespace OLDD_camera.Camera
                         WindowSizeCoef = 3;
                         break;
                     case 3:
-                        WindowSizeCoef = 2; 
+                        WindowSizeCoef = 4; 
+                        break;
+                    case 4:
+                        WindowSizeCoef = 2;
                         break;
                 }
                 Deactivate();
