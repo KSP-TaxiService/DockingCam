@@ -8,11 +8,10 @@ namespace OLDD_camera.Utils
     public class AssetLoader:MonoBehaviour
     {
         public static Material matNightVisionClear = null;
-        public static Material matNightVisionNoise1 = null;
-        //public static Material matNightVisionNoise2 = null;
-        public static Material matNoise = null;
-        public static Material matNoiseNightVision = null;
-        public static Material matOldTV = null;
+        public static Material matNightVision = null;
+
+        public static Material matTest = null;
+        public static Material matCRT = null;
         public static Material matGrayscale = null;
 
         public static Texture2D texSelfRot = null;
@@ -35,19 +34,44 @@ namespace OLDD_camera.Utils
             // Load and retrieve the AssetBundle
             Debug.Log("OLDD_AssetLoader: finished");
             AssetBundle bundle = www.assetBundle;
-            matGrayscale = (Material)bundle.LoadAsset("Grayscale");
-            matOldTV = (Material)bundle.LoadAsset("OldTV");
-            matNightVisionNoise1 = (Material)bundle.LoadAsset("NightVisionNoise1");
-            matNoise = (Material)bundle.LoadAsset("Noise");
-            matNoiseNightVision = (Material)bundle.LoadAsset("NoiseNightVision");
-            matNightVisionClear = (Material)bundle.LoadAsset("NightVisionClear");
+            var shaderAssets = bundle.LoadAllAssets<Shader>();
+
+            //Credit of working shaders: https://github.com/linuxgurugamer/DockingCam/blob/master/Source/Utils/AssetLoader.cs
+            for (int i = 0; i < shaderAssets.Length; i++)
+            {
+                var shader = shaderAssets[i];
+                if (shader.name == "Custom/CRT")
+                {
+                    matCRT = new Material(shader);
+                    matCRT.name = "CRT";
+                }
+
+                if (shader.name == "Hidden/NightVision")
+                {
+                    matNightVision = new Material(shader);
+                    matNightVision.name = "Night Vision";
+                }
+
+                if (shader.name == "NightVisionClear")
+                {
+                    matNightVisionClear = new Material(shader);
+                    matNightVisionClear.name = "Night Vision (Clear)";
+                }
+
+                if (shader.name == "Custom/MovieTime")
+                {
+                    matGrayscale = new Material(shader);
+                    matGrayscale.name = "Movie Time";
+                }
+            }
+
             texSelfRot = (Texture2D)bundle.LoadAsset("selfrot");
             texTargetRot = (Texture2D)bundle.LoadAsset("targetrot");
             texTargetPoint = (Texture2D)bundle.LoadAsset("targetPoint");
             texLampOn = (Texture2D)bundle.LoadAsset("lampon");
             texLampOff = (Texture2D)bundle.LoadAsset("lampoff");
             texDockingCam = (Texture2D)bundle.LoadAsset("dockingcam");
-            Debug.Log("OLDD_AssetLoader: get all materials");
+            
             www.Dispose();
         }
     }

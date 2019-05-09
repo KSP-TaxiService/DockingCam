@@ -4,6 +4,7 @@ using KSP.UI.Screens;
 using OLDD_camera.Camera;
 using OLDD_camera.Utils;
 using UnityEngine;
+using System;
 
 namespace OLDD_camera
 {
@@ -165,7 +166,7 @@ namespace OLDD_camera
 
         private static void GetShadersPack()
         {
-            if (GUI.Toggle(new Rect(20, 40, 222, 20), _shadersToUse0, "Shaders pack Full (7 choices)"))
+            if (GUI.Toggle(new Rect(20, 40, 222, 20), _shadersToUse0, "Shaders pack Full ("+ Enum.GetNames(typeof(ShaderType)).Length +" choices)"))
             {
                 BaseCamera.ShadersToUse = 0;
                 _shadersToUse0 = true;
@@ -173,7 +174,7 @@ namespace OLDD_camera
                 _shadersToUse2 = false;
                 SaveWindowData();
             }
-            if (GUI.Toggle(new Rect(20, 60, 222, 20), _shadersToUse1, "Shaders pack Noisy (2 choices)"))
+            if (GUI.Toggle(new Rect(20, 60, 222, 20), _shadersToUse1, "Shaders pack Noisy ("+ Enum.GetNames(typeof(ShaderType1)).Length + " choices)"))
             {
                 BaseCamera.ShadersToUse = 1;
                 _shadersToUse0 = false;
@@ -181,7 +182,7 @@ namespace OLDD_camera
                 _shadersToUse2 = false;
                 SaveWindowData();
             }
-            if (GUI.Toggle(new Rect(20, 80, 222, 20), _shadersToUse2, "Shaders pack Standart (3 choices)"))
+            if (GUI.Toggle(new Rect(20, 80, 222, 20), _shadersToUse2, "Shaders pack Standard ("+ Enum.GetNames(typeof(ShaderType2)).Length + " choices)"))
             {
                 BaseCamera.ShadersToUse = 2;
                 _shadersToUse0 = false;

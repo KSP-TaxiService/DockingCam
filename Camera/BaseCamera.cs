@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OLDD_camera.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OLDD_camera.Camera
 {
@@ -199,7 +200,7 @@ namespace OLDD_camera.Camera
             var calculateZoom = (int)(MaxZoom - CurrentZoom + MinZoom);
             CalculatedZoom = !ZoomMultiplier ? calculateZoom : calculateZoom * MinZoomMultiplier*6;
 
-            GUI.Label(new Rect(widthOffset, 128, 80, 20), "zoom: " + CalculatedZoom, Styles.Label13B);
+            GUI.Label(new Rect(widthOffset, 128, 80, 20), "Zoom: " + CalculatedZoom, Styles.Label13B);
 
             if (FlightGlobals.ActiveVessel == ThisPart.vessel) 
                 _isTargetPoint = GUI.Toggle(new Rect(widthOffset-2, 233, 88, 20), _isTargetPoint, "Target Mark");
@@ -218,7 +219,7 @@ namespace OLDD_camera.Camera
                     CurrentShader = CameraShaders.GetShader2(_shaderType2);
                     break;
             }
-            _currentShaderName = CurrentShader == null ? "none" : CurrentShader.name;
+            _currentShaderName = CurrentShader == null ? "None" : CurrentShader.name;
 
             if (Event.current.type.Equals(EventType.Repaint))
                 Graphics.DrawTexture(TexturePosition, Render(), CurrentShader);
@@ -281,7 +282,7 @@ namespace OLDD_camera.Camera
 
             var tooltip = new GUIContent("☼", _currentShaderName);
             GUI.Box(new Rect(8, TexturePosition.yMax - 22, 20, 20), tooltip);
-            GUI.Label(new Rect(64, 128, 200, 40), GUI.tooltip, Styles.GreenLabel15B);
+            GUI.Label(new Rect(8, TexturePosition.yMax - 52, 200, 40), GUI.tooltip, Styles.GreenLabel15B);
             if (GUI.Button(new Rect(8, TexturePosition.yMax - 22, 20, 20), "☼")) 
             {
                 switch (ShadersToUse)
@@ -289,17 +290,26 @@ namespace OLDD_camera.Camera
                     case 0:
                         _shaderType++;
                         if (!Enum.IsDefined(typeof (ShaderType), _shaderType))
-                            _shaderType = ShaderType.OldTV;
+                            _shaderType = ShaderType.None;
                         break;
                     case 1:
                         _shaderType1++;
                         if (!Enum.IsDefined(typeof(ShaderType1), _shaderType1))
-                            _shaderType1 = ShaderType1.OldTV;
+                            _shaderType1 = ShaderType1.CRT;
                         break;
                     case 2:
-                        _shaderType2++;
-                        if (!Enum.IsDefined(typeof (ShaderType2), _shaderType2))
-                            _shaderType2 = ShaderType2.None;
+                        switch(_shaderType2)
+                        {
+                            case ShaderType2.None:
+                                _shaderType2 = ShaderType2.NightVisionClear;
+                                break;
+                            case ShaderType2.NightVisionClear:
+                                _shaderType2 = ShaderType2.Grayscale;
+                                break;
+                            case ShaderType2.Grayscale:
+                                _shaderType2 = ShaderType2.None;
+                                break;
+                        }
                         break;
                 }
             }
