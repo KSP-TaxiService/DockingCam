@@ -255,9 +255,11 @@ namespace OLDD_camera.Camera
                 if (_isTargetPoint)
                     GUI.DrawTexture(new Rect(TexturePosition.xMin + offsetX-10, TexturePosition.yMax - offsetY-10, 20, 20), _textureTargetMark);
             }
-
-            if (IsOrbital)
-                GUI.DrawTexture(TexturePosition, TextureNoSignal[TextureNoSignalId]); 
+            else
+            {
+                if (IsOrbital)
+                    GUI.DrawTexture(TexturePosition, TextureNoSignal[TextureNoSignalId]);
+            }
         }
 
         /// <summary>

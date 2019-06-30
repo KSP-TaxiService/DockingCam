@@ -72,6 +72,7 @@ namespace OLDD_camera.Modules
 
         public void Activate()
         {
+            if (_camera == null) return;
             if (_camera.IsActive) return;
             _camera.Activate();
             StartCoroutine("WhiteNoise"); 
@@ -79,6 +80,7 @@ namespace OLDD_camera.Modules
 
         public void Deactivate()
         {
+            if (_camera == null) return;
             if (!_camera.IsActive) return;
             StopCoroutine("WhiteNoise");
             _camera.Deactivate();
