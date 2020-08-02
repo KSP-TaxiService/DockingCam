@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC0B143E-C41C-44BF-9B47-ED92074D2986}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OLDD_camera</RootNamespace>
+    <AssemblyName>DockingCamera</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath Condition="Exists('$(KSPDEVDIR)\GameData\DockingCam\Plugins\')">$(KSPDEVDIR)\GameData\DockingCam\Plugins\</OutputPath>
+    <OutputPath Condition="!Exists('$(KSPDEVDIR)\GameData\DockingCam\Plugins\')">obj\DockingCam\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath Condition="Exists('$(KSPDEVDIR)\GameData\DockingCam\Plugins\')">$(KSPDEVDIR)\GameData\DockingCam\Plugins\</OutputPath>
+    <OutputPath Condition="!Exists('$(KSPDEVDIR)\GameData\DockingCam\Plugins\')">..\..\GameData\DockingCam\Plugins\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Utils\AssetLoader.cs" />
+    <Compile Include="Utils\CameraDestroyer.cs" />
+    <Compile Include="Utils\DockCamToolbarButton.cs" />
+    <Compile Include="Utils\ModuleSpyExperiment.cs" />
+    <Compile Include="Utils\Styles.cs" />
+    <Compile Include="Modules\PartCameraModule.cs" />
+    <Compile Include="Utils\CameraShaders.cs" />
+    <Compile Include="Camera\BaseCamera.cs" />
+    <Compile Include="Camera\DockingCamera.cs" />
+    <Compile Include="Modules\DockingCameraModule.cs" />
+    <Compile Include="Camera\PartCamera.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\TargetHelper.cs" />
+    <Compile Include="Utils\Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp.dll')">Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll')">Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.dll')">UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AnimationModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AnimationModule.dll')">UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AudioModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AudioModule.dll')">UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll')">UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.ImageConversionModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.ImageConversionModule.dll')">UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.IMGUIModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.IMGUIModule.dll')">UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.InputLegacyModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.InputLegacyModule.dll')">UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.TextRenderingModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.TextRenderingModule.dll')">UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UI.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UI.dll')">UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AssetBundleModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.AssetBundleModule.dll')">UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath Condition="Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll')">$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath Condition="!Exists('$(KSPDEVDIR)\KSP_x64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll')">UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+    $(PostBuildEventDependsOn);
+  </PostBuildEventDependsOn>
+    <PostBuildEvent>
+if "$(ConfigurationName)"=="Debug" (call "$(ProjectDir)\..\buildscripts\UnityDebug_2019\prepare-debug.bat" $(TargetName))
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
