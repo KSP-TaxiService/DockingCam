@@ -10,8 +10,8 @@ namespace OLDD_camera.Modules
         /// <summary>
         /// Module adds an external camera and gives control over it
         /// </summary>
-        [KSPField(guiActive = true, guiActiveEditor = false, guiName = "Docking Camera", isPersistant = true)]
-        [UI_Toggle(controlEnabled = true, enabledText = "ON", disabledText = "OFF", scene = UI_Scene.Flight)]
+        [KSPField(guiActive = true, guiActiveEditor = false, guiName = "Docking Camera", isPersistant = true),
+        UI_Toggle(controlEnabled = true, enabledText = "ON", disabledText = "OFF", scene = UI_Scene.Flight)]
         public bool IsEnabled;
 
         [KSPField(isPersistant = true)]

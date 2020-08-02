@@ -62,7 +62,7 @@ namespace OLDD_camera.Camera
 
         protected List<UnityEngine.Camera> AllCameras = new List<UnityEngine.Camera>();
         protected List<GameObject> AllCamerasGameObject = new List<GameObject>();
-        protected List<string> CameraNames = new List<string>{"GalaxyCamera", "Camera ScaledSpace", "Camera 01", "Camera 00" };
+        protected List<string> CameraNames = new List<string> { "GalaxyCamera", "Camera ScaledSpace", "UIMainCamera", "Camera 00" };
 
         protected BaseCamera(Part thisPart, float windowSizeInit, string windowLabel = "Camera")
         {
